@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+
+.cover {
+    height: 100vh;
+    background-image: url('https://www.thebalancesmb.com/thmb/kectf9d4azgI8yVnBuoB0h2Z8zA=/3865x2174/smart/filters:no_upscale()/overhead-view-of-smiling-female-friends-sharing-lunch-in-restaurant-928010348-5b4abe8f46e0fb003712c478.jpg');
+    background-size: cover;
+    background-position: top;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: darken;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+
+
+
+  .form-rounded {
+    border-radius: 1rem;
+    }
+
+    .li-st-none{
+      list-style-type: none;
+    }
+
+    
