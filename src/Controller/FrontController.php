@@ -9,8 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontController extends AbstractController
 {
     #[Route('/', name: 'mainPage')]
-    public function index(): Response
+    public function index()
     {
-            return $this->render('base.html.twig');
+            return $this->render('front/index.html.twig');
+    }
+
+    #[Route('/order', name: 'order')]
+    public function order()
+    {
+            return $this->render('front/order.html.twig');
     }
 }
