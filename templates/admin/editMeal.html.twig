@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+{% block header %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand">Restaurant</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Main Page
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Order History
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							LogOut
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block main %}
+
+	<div class="d-flex justify-content-center align-items-center flex-wrap flex-column " style="height:94vh">
+		<div class="d-flex align-items-start w-50">
+			<span class="h2 text-white">Edit meal:
+			</span>
+		</div>
+
+		<div class="input-group mb-3 w-50 ">
+			<div class="input-group-prepend w-25">
+				<span class="input-group-text" id="basic-addon1">Name</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="Name#1">
+		</div>
+
+		<div class="d-flex align-items-start w-50">
+			<span class="h4 text-white">Small size:
+			</span>
+		</div>
+		<div class="input-group mb-3 w-50 ">
+			<div class="input-group-prepend w-25">
+				<span class="input-group-text" id="basic-addon1">Price</span>
+			</div>
+			<input type="number" class="form-control" value="21.37">
+		</div>
+
+		<div class="d-flex align-items-start w-50">
+			<span class="h4 text-white">Medium size:
+			</span>
+		</div>
+
+		<div class="input-group mb-3 w-50 ">
+			<div class="input-group-prepend w-25">
+				<span class="input-group-text" id="basic-addon1">Price</span>
+			</div>
+			<input type="number" class="form-control" value="21.37">
+		</div>
+
+		<div class="d-flex align-items-start w-50">
+			<span class="h4 text-white">Large size:
+			</span>
+		</div>
+
+		<div class="input-group mb-3 w-50 ">
+			<div class="input-group-prepend w-25">
+				<span class="input-group-text" id="basic-addon1">Price</span>
+			</div>
+			<input type="number" class="form-control" value="21.37">
+		</div>
+		<div class="d-flex justify-content-between" style="width:50%">
+			<button type="button" class="btn btn-danger">Abort changes</button>
+			<button type="button" class="btn btn-success">Apply changes</button>
+		</div>
+	{% endblock %}
