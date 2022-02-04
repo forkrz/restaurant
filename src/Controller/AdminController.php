@@ -25,4 +25,9 @@ class AdminController extends AbstractController
         return $this->render('admin/editMeal.html.twig');
     }
 
+    #[Route('/add_meal', name: 'add_meal')]
+    public function addMeal(){
+        return $this->render('admin/addMeal.html.twig');
+    }
+
 }
