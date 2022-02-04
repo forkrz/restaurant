@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand">Restaurant</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Main Page
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Order History
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							LogOut
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block main %}
+
+<div class="d-flex justify-content-center align-items-center flex-column" style="height:94vh">
+<div class="d-flex align-items-start w-50">
+<p class="text-white h3">Meals:</p>
+</div>
+<table class="table table-dark w-50">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Size</th>
+      <th scope="col">Price</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td><a href="#" class="link-light">Edit</a></td>
+      <td><a href="#" class="link-light">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+{% endblock %}

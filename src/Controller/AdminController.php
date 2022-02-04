@@ -15,5 +15,9 @@ class AdminController extends AbstractController
         return $this->render('admin/login.html.twig');
     }
     
+    #[Route('/main_page', name: 'main_page')]
+    public function mainPage(){
+        return $this->render('admin/mainPage.html.twig');
+    }
 
 }
