@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+{% block header %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand">Restaurant</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Main Page
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							LogOut
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block main %}
+
+	<div class="d-flex justify-content-center align-items-center flex-column" style="height:94vh">
+		<div class="d-flex align-items-start w-50">
+			<p class="text-white h3">Order details</p>
+		</div>
+		<table class="table table-dark w-50">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Size</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Mark</td>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>xd</td>
+				</tr>
+			</tbody>
+		</table>
+
+    		<div class="d-flex justify-content-between" style="width:50%">
+			<p class="h2 text-white">Total Price: </p>
+			<p class="h2 text-white">21.37 </p>
+		</div>
+
+	{% endblock %}

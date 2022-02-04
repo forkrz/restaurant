@@ -31,9 +31,13 @@ class AdminController extends AbstractController
     }
 
     #[Route('/orders', name: 'orders')]
-    public function orderRecords(){
+    public function orders(){
         return $this->render('admin/orders.html.twig');
     }
 
+    #[Route('/order_details', name: 'order_details')]
+    public function orderDetails(){
+        return $this->render('admin/orderDetails.html.twig');
+    }
 
 }
