@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block main %}
-
+	<form method="POST" action="{{path('add_meal_db')}}">
 	<div class="d-flex justify-content-center align-items-center flex-wrap flex-column " style="height:94vh">
 		<div class="d-flex align-items-start w-50">
 			<span class="h2 text-white">Add meal:
@@ -38,7 +38,7 @@
 			<div class="input-group-prepend w-25">
 				<span class="input-group-text" id="basic-addon1">Name</span>
 			</div>
-			<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="Name">
 		</div>
 
 		<div class="d-flex align-items-start w-50">
@@ -49,7 +49,7 @@
 			<div class="input-group-prepend w-25">
 				<span class="input-group-text" id="basic-addon1">Price</span>
 			</div>
-			<input type="number" class="form-control" value="">
+			<input type="number" class="form-control" value="" name="smallPrice" step="0.01">
 		</div>
 
 		<div class="d-flex align-items-start w-50">
@@ -61,7 +61,7 @@
 			<div class="input-group-prepend w-25">
 				<span class="input-group-text" id="basic-addon1">Price</span>
 			</div>
-			<input type="number" class="form-control" value="">
+			<input type="number" class="form-control" value="" name="mediumPrice" step="0.01">
 		</div>
 
 		<div class="d-flex align-items-start w-50">
@@ -73,10 +73,11 @@
 			<div class="input-group-prepend w-25">
 				<span class="input-group-text" id="basic-addon1">Price</span>
 			</div>
-			<input type="number" class="form-control" value="">
+			<input type="number" class="form-control" value="" name="largePrice" step="0.01">
 		</div>
 		<div class="d-flex justify-content-between" style="width:50%">
 			<button type="button" class="btn btn-danger">Abort</button>
-			<button type="button" class="btn btn-success">Add meal</button>
+			<button type="submit" class="btn btn-success">Add meal</button>
 		</div>
+		</form>
 	{% endblock %}

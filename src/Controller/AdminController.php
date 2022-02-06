@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\MEALS;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route("/admin")]
 
 class AdminController extends AbstractController
 {
+    public function __construct(private ManagerRegistry $doctrine) {}
+
     #[Route('/login', name: 'admin_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
@@ -47,6 +52,25 @@ class AdminController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('admin/addMeal.html.twig');
     }
+    #[Route('/add_meal_db', name: 'add_meal_db', methods:'POST')]
+    public function addMealDb(Request $request){
+        $entityManager = $this->doctrine->getManager();
+
+        $name = $request->request->get('Name');
+        $smallPrice = $request->request->get('smallPrice');
+        $mediumPrice = $request->request->get('mediumPrice');
+        $largePrice = $request->request->get('largePrice');
+        
+        $meals = new MEALS;
+        $meals-> setMEALNAME($name);
+        $meals->setSMALLPRICE($smallPrice);
+        $meals->setMEDIUMPRICE($mediumPrice);
+        $meals->setLARGEPRICE($largePrice);
+        $entityManager->persist($meals);
+        $entityManager->flush();
+        return $this->redirectToRoute('main_page');
+    }
+
 
     #[Route('/orders', name: 'orders')]
     public function orders(){
