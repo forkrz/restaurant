@@ -28,13 +28,13 @@
 {% endblock %}
 
 {% block main %}
-	<div style="height:94vh">
-		{% for message in app.flashes('success') %}
-			<div class="d-flex align-items-start justify-content-start"></div>
-			<div class="alert alert-success w-100">
-				{{ message }}
-			</div>
-	{% endfor %}	
+	{# <div style="height:94vh">
+			{% for message in app.flashes('success') %}
+				<div class="d-flex align-items-start justify-content-start"></div>
+				<div class="alert alert-success w-100 text-center">
+					{{ message }}
+				</div>
+		{% endfor %}	 #}
 	<div class="d-flex justify-content-center align-items-center flex-column" style="height:91%">
 		<div class="d-flex align-items-start w-50 pb-2">
 			<button type="button" class="btn btn-success py-2 px-3">Add meal</button>
@@ -48,25 +48,33 @@
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Name</th>
-					<th scope="col">Size</th>
-					<th scope="col">Price</th>
+					<th scope="col">
+						Small Price</th>
+					<th scope="col">
+						Medium Price</th>
+					<th scope="col">
+						Large Price</th>
 					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>
-						<a href="#" class="link-light">Edit</a>
-					</td>
-					<td>
-						<a href="#" class="link-light">Delete</a>
-					</td>
+					{% for meal in meals %}
+						<th scope="col">{{meal.getid()}}</th>
+						<th scope="col">{{meal.getMEALNAME()}}</th>
+						<th scope="col">{{meal.getSMALLPRICE()}}</th>
+						<th scope="col">{{meal.getMEDIUMPRICE()}}</th>
+						<th scope="col">{{meal.getLARGEPRICE()}}</th>
+						<td>
+							<a href="#" class="link-light">Edit</a>
+						</td>
+						<td>
+							<a href="#" class="link-light">Delete</a>
+						</td>
 				</tr>
+					{% endfor %}
+				
 			</tbody>
 		</table>
 	</div>

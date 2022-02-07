@@ -37,8 +37,10 @@ class AdminController extends AbstractController
     
     #[Route('/main_page', name: 'main_page')]
     public function mainPage(){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('admin/mainPage.html.twig');
+        $entityManager = $this->doctrine->getManager();
+        $savedMeals = $entityManager->getRepository(MEALS::class)->findAll();
+        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('admin/mainPage.html.twig', ['meals'=>$savedMeals]);
     }
 
     #[Route('/edit_meal', name: 'edit_meal')]
