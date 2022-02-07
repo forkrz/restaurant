@@ -37,9 +37,10 @@ class AdminController extends AbstractController
     
     #[Route('/main_page', name: 'main_page')]
     public function mainPage(){
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $entityManager = $this->doctrine->getManager();
         $entityManager = $this->doctrine->getManager();
         $savedMeals = $entityManager->getRepository(MEALS::class)->findAll();
-        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('admin/mainPage.html.twig', ['meals'=>$savedMeals]);
     }
 
@@ -54,6 +55,7 @@ class AdminController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('admin/addMeal.html.twig');
     }
+
     #[Route('/add_meal_db', name: 'add_meal_db', methods:'POST')]
     public function addMealDb(Request $request){
         $entityManager = $this->doctrine->getManager();
@@ -62,19 +64,43 @@ class AdminController extends AbstractController
         $smallPrice = $request->request->get('smallPrice');
         $mediumPrice = $request->request->get('mediumPrice');
         $largePrice = $request->request->get('largePrice');
+
+        if($name == null or $smallPrice == null or $mediumPrice == null or $largePrice == null){
+            $this->addFlash(
+                'error',
+                'All fields must be completed'
+                );
+                return $this->redirectToRoute('add_meal');
+        }
+
+
+        if($entityManager->getRepository(MEALS::class)->findBy(array('MEAL_NAME'=>$name)) != null){
+            $this->addFlash(
+            'error',
+            'Meal already existed'
+            );
+            return $this->redirectToRoute('main_page');
+            }else{
+                $meals = new MEALS;
+                $meals-> setMEALNAME($name);
+                $meals->setSMALLPRICE($smallPrice);
+                $meals->setMEDIUMPRICE($mediumPrice);
+                $meals->setLARGEPRICE($largePrice);
+                $entityManager->persist($meals);
+                $entityManager->flush();
         
-        $meals = new MEALS;
-        $meals-> setMEALNAME($name);
-        $meals->setSMALLPRICE($smallPrice);
-        $meals->setMEDIUMPRICE($mediumPrice);
-        $meals->setLARGEPRICE($largePrice);
-        $entityManager->persist($meals);
-        $this->addFlash(
-            'success',
-            'Meal has been added'
-        );
-        return $this->redirectToRoute('main_page');
+                $this->addFlash(
+                    'success',
+                    'Meal has been added'
+                );
+        
+                return $this->redirectToRoute('main_page');
+
+            }
+
     }
+        
+    
 
 
     #[Route('/orders', name: 'orders')]
