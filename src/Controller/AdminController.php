@@ -67,7 +67,10 @@ class AdminController extends AbstractController
         $meals->setMEDIUMPRICE($mediumPrice);
         $meals->setLARGEPRICE($largePrice);
         $entityManager->persist($meals);
-        $entityManager->flush();
+        $this->addFlash(
+            'success',
+            'Meal has been added'
+        );
         return $this->redirectToRoute('main_page');
     }
 
