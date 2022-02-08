@@ -78,7 +78,7 @@
 							<a href="{{path('edit_meal',{'id':meal.getid()})}}"  class="link-light">Edit</a>
 						</td>
 						<td>
-							<a href="#" class="link-light">Delete</a>
+							<a href="{{path('delete_meal_db',{'id':meal.getid()})}}"class="link-light">Delete</a>
 						</td>
 				</tr>
 					{% endfor %}

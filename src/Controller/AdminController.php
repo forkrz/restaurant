@@ -100,6 +100,29 @@ class AdminController extends AbstractController
             }            
     }
 
+    #[Route('/delete_meal_db', name: 'delete_meal_db', methods:'POST|GET')]
+    public function deleteMealDB(Request $request){
+        $entityManager = $this->doctrine->getManager();
+
+        $id = $request->query->get('id');
+
+        if (!$id) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $meal = $entityManager->getRepository(MEALS::class)->find($id);
+        $entityManager->remove($meal);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            'Meal has been deleted'
+            );
+        return $this->redirectToRoute('main_page');
+    }
+
     #[Route('/add_meal', name: 'add_meal')]
     public function addMeal(){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -122,7 +145,6 @@ class AdminController extends AbstractController
                 );
                 return $this->redirectToRoute('add_meal');
         }
-
 
         if($entityManager->getRepository(MEALS::class)->findBy(array('MEAL_NAME'=>$name)) != null){
             $this->addFlash(
@@ -150,9 +172,6 @@ class AdminController extends AbstractController
 
     }
         
-    
-
-
     #[Route('/orders', name: 'orders')]
     public function orders(){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
