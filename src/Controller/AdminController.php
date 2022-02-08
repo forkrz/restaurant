@@ -44,10 +44,60 @@ class AdminController extends AbstractController
         return $this->render('admin/mainPage.html.twig', ['meals'=>$savedMeals]);
     }
 
-    #[Route('/edit_meal', name: 'edit_meal')]
-    public function editMeal(){
+    #[Route('/edit_meal', name: 'edit_meal', methods:'GET')]
+    public function editMeal(Request $request){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('admin/editMeal.html.twig');
+        $entityManager = $this->doctrine->getManager();
+        $id = $request->query->get('id');
+        $meal = $entityManager->getRepository(MEALS::class)->findBy(array('id'=>$id));
+        $id = $request->query->get('id');
+        if (!$id) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        return $this->render('admin/editMeal.html.twig', ['ids'=>$id, 'meals'=>$meal[0]]);
+    }
+
+    #[Route('/edit_meal_db', name: 'edit_meal_db', methods:'POST')]
+    public function editMealDB(Request $request){
+        $entityManager = $this->doctrine->getManager();
+        
+        $id = $request->query->get('id');
+
+        $name = $request->request->get('Name');
+        $smallPrice = $request->request->get('smallPrice');
+        $mediumPrice = $request->request->get('mediumPrice');
+        $largePrice = $request->request->get('largePrice');
+
+        if($name == null or $smallPrice == null or $mediumPrice == null or $largePrice == null){
+            $this->addFlash(
+                'error',
+                'All fields must be completed'
+                );
+                return $this->redirectToRoute('edit_meal');
+        }
+
+        if($entityManager->getRepository(MEALS::class)->findBy(array('MEAL_NAME'=>$name)) != null){
+            $this->addFlash(
+            'error',
+            'Meal with this name already exist'
+            );
+            return $this->redirectToRoute('main_page');
+            }else{
+                $meal = $entityManager->getRepository(MEALS::class)->find($id);
+                $meal-> setMEALNAME($name);
+                $meal->setSMALLPRICE($smallPrice);
+                $meal->setMEDIUMPRICE($mediumPrice);
+                $meal->setLARGEPRICE($largePrice);
+                $entityManager->flush();
+                $this->addFlash(
+                    'success',
+                    'Meal has been modified'
+                    );
+                    return $this->redirectToRoute('main_page');
+            }            
     }
 
     #[Route('/add_meal', name: 'add_meal')]
@@ -77,7 +127,7 @@ class AdminController extends AbstractController
         if($entityManager->getRepository(MEALS::class)->findBy(array('MEAL_NAME'=>$name)) != null){
             $this->addFlash(
             'error',
-            'Meal already existed'
+            'Meal already exist'
             );
             return $this->redirectToRoute('main_page');
             }else{
