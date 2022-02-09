@@ -39,7 +39,6 @@ class AdminController extends AbstractController
     public function mainPage(){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->doctrine->getManager();
-        $entityManager = $this->doctrine->getManager();
         $savedMeals = $entityManager->getRepository(MEALS::class)->findAll();
         return $this->render('admin/mainPage.html.twig', ['meals'=>$savedMeals]);
     }
@@ -62,6 +61,7 @@ class AdminController extends AbstractController
 
     #[Route('/edit_meal_db', name: 'edit_meal_db', methods:'POST')]
     public function editMealDB(Request $request){
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->doctrine->getManager();
         
         $id = $request->query->get('id');
@@ -102,6 +102,7 @@ class AdminController extends AbstractController
 
     #[Route('/delete_meal_db', name: 'delete_meal_db', methods:'POST|GET')]
     public function deleteMealDB(Request $request){
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->doctrine->getManager();
 
         $id = $request->query->get('id');
