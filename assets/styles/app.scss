@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 .cover {
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('https://www.thebalancesmb.com/thmb/kectf9d4azgI8yVnBuoB0h2Z8zA=/3865x2174/smart/filters:no_upscale()/overhead-view-of-smiling-female-friends-sharing-lunch-in-restaurant-928010348-5b4abe8f46e0fb003712c478.jpg');
     background-size: cover;
     background-position: top;

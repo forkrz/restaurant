@@ -16,6 +16,11 @@ global.$ = require("jquery")
 // the bootstrap module doesn't export/return anything
 const bootstrap =require('bootstrap');
 
+import {Quantites} from './jsclasses/QuantitesMainPage.js';
+
+const qty = new Quantites;
+
+qty.qty();
 
 const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 list.map((el) => {

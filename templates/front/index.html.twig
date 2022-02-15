@@ -30,7 +30,7 @@
 									<div class="d-flex align-items-center justify-content-center pt-1 flex-wrap w-100">
 										<p class="pt-2">Quantity:</p>
 										<div class="d-flex align-items-center justify-content-center flex-wrap w-100">
-											<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash-circle" viewbox="0 0 16 16">
+											<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash-circle" viewbox="0 0 16 16" data-field-id="{{loop.index}}" data-button-type="minus">
 												<style>
 													svg {
 														cursor: pointer;
@@ -38,7 +38,7 @@
 												</style>
 												<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 												<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-											</svg><input type="number" min="0" class="col-sm-1 mx-2 form-rounded text-center" value="0"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
+											</svg><div class="col-sm-1 mx-2 form-rounded text-center" id="{{loop.index}}">1</div><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16" data-field-id="{{loop.index}}" data-button-type="plus">
 												<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 												<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 											</svg>
