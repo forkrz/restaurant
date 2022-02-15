@@ -25,7 +25,7 @@ class ApiController extends AbstractController
                 'meal' => $meal->getMEALNAME(),
                 'small_price' => $meal->getSMALLPRICE(),
                 'medium_price' => $meal->getMEDIUMPRICE(),
-                'larige_price' => $meal->getLARGEPRICE()
+                'large_price' => $meal->getLARGEPRICE()
 
             ];
         }
