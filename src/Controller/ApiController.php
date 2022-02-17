@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route("/api")]
 
@@ -30,6 +31,17 @@ class ApiController extends AbstractController
             ];
         }
         return $this->json($meals);
+    }
+
+    #[Route('/save_order', name: 'save_order', methods:'POST')]
+    public function saveOrder(Request $request){
+        $name = $request->get('Names');
+
+        $response = new Response();
+        $response->setContent(json_encode(['names'=>$name]));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
     }
     
 }

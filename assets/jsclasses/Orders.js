@@ -143,5 +143,25 @@ export class Orders {
 
     placeOrderBtnAddEventListener(){
         const btn = document.getElementById('placeOrder');
+        btn.addEventListener('click', ()=>{
+            this.api.addQtyInfo(this.createArrWithOrderData()['Meal Names'],
+            this.createArrWithOrderData()['Size'],this.createArrWithOrderData()['qty']);
+        })
+    }
+
+    createArrWithOrderData(){
+        const arr = this.getElementsWithSpecificKeyFromLocalStorage('qty');
+        const orderArr = [];
+        orderArr['qty'] = []
+        orderArr['Meal Names'] = []
+        orderArr['Size'] = []
+
+        arr.forEach((element,i) => {
+            orderArr['qty'].push(this.getQtyOfMealOnOrder(i));
+            orderArr['Meal Names'].push(this.getMealNameOnOrder(i));
+            orderArr['Size'].push(this.getSizeOfMealOnOrder(i));
+        });
+
+        return orderArr;
     }
 }
