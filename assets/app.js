@@ -8,20 +8,16 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
-// start the Stimulus application
+// start the Stimulus application 
 import './bootstrap';
  
 global.$ = require("jquery")
 // this "modifies" the jquery module: adding behavior to it
-// the bootstrap module doesn't export/return anything
+// the bootstrap module doesn't export/return anything 
 const bootstrap =require('bootstrap');
 
-import {MainPage} from './jsclasses/MainPage.js';
 
-const mainPage = new MainPage;
 
-mainPage.qty();
-mainPage.prices();
 
 const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 list.map((el) => {
@@ -32,5 +28,5 @@ list.map((el) => {
     opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
     opts.html = true;
   }
-  new bootstrap.Popover(el, opts);
+  new bootstrap.Popover(el, opts);  
 })

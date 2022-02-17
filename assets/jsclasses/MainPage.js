@@ -1,8 +1,10 @@
 import {Api} from "./Api.js";
+import { Orders } from "./Orders.js";
 export class MainPage{
     
     constructor() {   
-        this.api = new Api;
+        this.api = new Api; 
+        this.orders = new Orders;
       }
 
     minusAddEventListener(element,input){     
@@ -53,7 +55,6 @@ export class MainPage{
     prices = async()=>{
         const data = await this.api.getMealData();
         const pricesFields = document.querySelectorAll('[id^="price"]');
-        console.log(data);
         pricesFields.forEach((priceField,i) =>{
             this.priceHandler(document.querySelector(`[data-field-id='${i+1}'][data-button-type='small']`),data[i].small_price,
             document.querySelector(`[data-field-id='${i+1}'][data-button-type='medium']`),data[i].medium_price,
@@ -63,5 +64,31 @@ export class MainPage{
         });
     }
     
+    getQtyonOrder = () =>{
+        let quantities = [];
+        const pricesFields = document.querySelectorAll('.form-rounded');
+        pricesFields.forEach(element => {
+            quantities.push(element.innerText);
+        });
+        return quantities.reduce(function(acc, val) { return acc + val; }, 0);
+    }
 
+    checkIfOrderNotEmpty = () =>{
+        const qty = this.getQtyonOrder();
+        if(qty == 0){
+            alert("Please select at least one meal");
+        }else{
+            this.orders.saveMealsData();
+        }
+    }
+
+    submitBtnHandler = () =>{
+        const btn = document.getElementById('placeOrderBtn');
+        btn.addEventListener('click', ()=>{
+            this.checkIfOrderNotEmpty();
+        })
+    }
+    clearLocalStorage(){
+        localStorage.clear();
+    }
 }

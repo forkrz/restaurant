@@ -2,6 +2,12 @@
 {% block title %}Summary
 {% endblock %}
 
+{% block javascripts %}
+{{ parent() }}
+{{encore_entry_script_tags('order') }}
+
+
+{% endblock %}
 
 {% block header %}
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,41 +40,13 @@
 				<th scope="col" class="text-center" style="min-width:10rem">Price</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<th scope="row" class="text-center">1</th>
-				<td class="text-center">Dish#1</td>
-				<td class="text-center">Medium</td>
-				<td class="text-center">1</td>
-				<td class="text-center">21.37</td>
-			</tr>
-			<tr>
-				<th scope="row" class="text-center">1</th>
-				<td class="text-center">Dish#1</td>
-				<td class="text-center">Medium</td>
-				<td class="text-center">1</td>
-				<td class="text-center">21.37</td>
-			</tr>
-			<tr>
-				<th scope="row" class="text-center">1</th>
-				<td class="text-center">Dish#1</td>
-				<td class="text-center">Medium</td>
-				<td class="text-center">1</td>
-				<td class="text-center">21.37</td>
-			</tr>
-            <tr>
-            <th scope="row" class="text-center">Total:</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="text-center">21.37</td>
-            </tr>
+		<tbody id = "tbody">
 
 		</tbody>
 	</table>
-        <div class="d-flex justify-content-between" style="width:43%">
+        <div class="d-flex justify-content-between" style="width:41.5%">
     <button type="button" class="btn btn-danger">Cancel Order</button>
-    <button type="button" class="btn btn-success">Place Order</button>
+    <button type="button" class="btn btn-success" id="placeOrder">Place Order</button>
     </div>
     </div>
     </div>
