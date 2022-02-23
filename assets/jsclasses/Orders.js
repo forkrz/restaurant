@@ -144,8 +144,7 @@ export class Orders {
     placeOrderBtnAddEventListener(){
         const btn = document.getElementById('placeOrder');
         btn.addEventListener('click', ()=>{
-            this.api.addQtyInfo(this.createArrWithOrderData()['Meal Names'],
-            this.createArrWithOrderData()['Size'],this.createArrWithOrderData()['qty']);
+            this.api.sendOrderData(this.createArrWithOrderData()['Meal Names'],this.createArrWithOrderData()['Size'],this.createArrWithOrderData()['qty']);
         })
     }
 

@@ -8,7 +8,7 @@ export class Api {
   };
 
   sendOrderData = async (mealNames, sizes, qtys) => {
-    const data = await fetch("http://restaurant.loc/api/get_meals", {
+    const res = fetch("http://restaurant.loc/api/save_order", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -16,17 +16,22 @@ export class Api {
       },
       body:
         this.addQtyInfo(mealNames, sizes, qtys)
+        
       
     });
-
-    const res = await data.json();
+    const status = (await res).status;
+    if(status == 200){
+      window.location.href="http://restaurant.loc/";
+    }
   };
 
   addQtyInfo(mealNames, sizes, qtys) {
-    JSON.stringify({
+    const data = JSON.stringify({
       Names: mealNames,
       Sizes: sizes,
       Qtys: qtys,
     });
+
+    return data;
   }
 }
