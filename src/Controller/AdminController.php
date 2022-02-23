@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\MEALS;
+use App\Entity\ORDERS;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -176,7 +177,9 @@ class AdminController extends AbstractController
     #[Route('/orders', name: 'orders')]
     public function orders(){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('admin/orders.html.twig');
+        $entityManager = $this->doctrine->getManager();
+        $ordersDB = $entityManager->getRepository(ORDERS::class)->findAll();
+        return $this->render('admin/orders.html.twig',['orders'=>$ordersDB]);
     }
 
     #[Route('/order_details', name: 'order_details')]

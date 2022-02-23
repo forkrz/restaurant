@@ -37,12 +37,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href="#" class="link-light">Show Details</a></td>
-    </tr>
+				<tr>
+					{% for order in orders %}
+						<th scope="col">{{order.getid()}}</th>
+						<th scope="col">{{order.getDATEOFORDER()|date('Y-m-d')}}</th>
+						<th scope="col">{{order.getTOTALCOST()}}</th>
+						<td>
+							<a href="{{path('order_details',{'id':order.getid()})}}"  class="link-light">details</a>
+						</td>
+				</tr>
+					{% endfor %}
   </tbody>
 </table>
 
