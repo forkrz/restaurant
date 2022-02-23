@@ -38,17 +38,22 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Mark</td>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>xd</td>
-				</tr>
+					{% for order in orders %}
+						<th scope="col">{{order.getMEALNAME()}}</th>
+						<th scope="col">{{order.getMEALSIZE()}}</th>
+						<th scope="col">{{order.getQUANTITY()}}</th>
+						<th scope="col">{{order.getPRICE()}}</th>
+						
+					</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 
-    		<div class="d-flex justify-content-between" style="width:50%">
-			<p class="h2 text-white">Total Price: </p>
-			<p class="h2 text-white">21.37 </p>
+		<div class="d-flex justify-content-between" style="width:49.5%">
+			<p class="h2 text-white">Total Price:
+			</p>
+			<p class="h2 text-white">21.37
+			</p>
 		</div>
 
 	{% endblock %}

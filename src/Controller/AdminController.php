@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\MEALS;
+use App\Entity\ORDERDETAILS;
 use App\Entity\ORDERS;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -183,9 +184,11 @@ class AdminController extends AbstractController
     }
 
     #[Route('/order_details', name: 'order_details')]
-    public function orderDetails(){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('admin/orderDetails.html.twig');
+    public function orderDetails(Request $request){
+        $id = $request->query->get('id');
+        $entityManager = $this->doctrine->getManager();
+        $orderDB = $entityManager->getRepository(ORDERDETAILS::class)->findBy(['ORDERID'=>$id]);
+        return $this->render('admin/orderDetails.html.twig',['orders'=>$orderDB]);
     }
 
 }
