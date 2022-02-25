@@ -42,12 +42,12 @@ class ApiController extends AbstractController
     }
 
     #[Route('/xd', name: 'xd', methods: 'get')]
-    public function test(){
+    public function test(ApiData $apiData){
         $ordersData = new OrdersData($this->doctrine);
         $response = new Response;
 
-        $response->setContent($ordersData->getLastOrderId());
-        return $response->send();
+        return  $response->setContent($apiData->getPrice(['awdwad'],['medium'],0));
+        
     }
 
     #[Route('/save_order', name: 'save_order', methods: 'post')]

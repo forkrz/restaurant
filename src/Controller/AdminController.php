@@ -18,17 +18,18 @@ class AdminController extends AbstractController
 {
     public function __construct(private ManagerRegistry $doctrine) {}
 
-    #[Route('/login', name: 'admin_login')]
-    public function index(AuthenticationUtils $authenticationUtils): Response
-    {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('admin/login.html.twig', [
-            'controller_name' => 'LoginController',
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ]);
-    }
+    // #[Route('/login', name: 'admin_login')]
+    // public function index(AuthenticationUtils $authenticationUtils): Response
+    // {
+    //     dump($this->getUser());
+    //     $error = $authenticationUtils->getLastAuthenticationError();
+    //     $lastUsername = $authenticationUtils->getLastUsername();
+    //     return $this->render('admin/login.html.twig', [
+    //         'controller_name' => 'LoginController',
+    //         'last_username' => $lastUsername,
+    //         'error'         => $error,
+    //     ]);
+    // }
 
     #[Route('/register', name: 'register')]
     public function register(){

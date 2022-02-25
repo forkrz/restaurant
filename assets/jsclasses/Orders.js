@@ -35,23 +35,21 @@ export class Orders {
         const title = document.getElementById(`title-${i+1}`);
         return title.innerText;
     }
-    saveMealData(i){
-        this.savePosition(`mealName${i}`,this.getMealTitle(i));
-        this.savePosition(`qty${i}`,this.getQtyOfMeal(i));
-        this.savePosition(`size${i}`,this.getSizeOfMeal(i));
-        this.savePosition(`price${i}`,this.getPriceOfMeal(i));
-    }
-
-    addMealToLocalStorageHandler(i){
-        if(this.getQtyOfMeal(i)>0){
-            this.saveMealData(i)
-        }
+    saveMealData(i,n){
+        this.savePosition(`mealName${n}`,this.getMealTitle(i));
+        this.savePosition(`qty${n}`,this.getQtyOfMeal(i));
+        this.savePosition(`size${n}`,this.getSizeOfMeal(i));
+        this.savePosition(`price${n}`,this.getPriceOfMeal(i));
     }
 
     saveMealsData(){
         const pricesFields = document.querySelectorAll('[id^="price"]');
+        let n = 0;
         pricesFields.forEach((element,i) => {
-            this.addMealToLocalStorageHandler(i);
+            if(this.getQtyOfMeal(i)>0){
+                this.saveMealData(i,n);
+                n++;
+            } 
         });
         window.location.href = '/order'
     }
@@ -138,7 +136,8 @@ export class Orders {
             totalPriceArr.push(partSum);
         })
         const totalPrice = totalPriceArr.reduce((partialSum, a) => partialSum + a, 0);
-        return totalPrice;
+        const priceRounded = totalPrice.toFixed(2);
+        return priceRounded;
     }
 
     placeOrderBtnAddEventListener(){

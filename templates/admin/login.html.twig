@@ -2,6 +2,23 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block header %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand">Restaurant</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('mainPage')}}">
+							Main Page
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
 {% block main %}
 <form method="post">
     {% if error %}
@@ -36,7 +53,7 @@
     </button>
         {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
         </div>
     {% endif %}
 </form>
